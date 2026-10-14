@@ -9,26 +9,41 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: DATABASE_URL
+      # Individual DB parts so we can build a proper jdbc:postgresql:// URL
+      - key: DB_HOST
         fromDatabase:
           name: resumeiq-db
-          property: connectionString
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: resumeiq-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: resumeiq-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: resumeiq-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: resumeiq-db
+          property: password
       - key: JWT_SECRET
         generateValue: true
       - key: APP_CORS_ALLOWED_ORIGINS
-        sync: false           # Set this manually in Render dashboard to your Vercel URL
+        sync: false           # Set manually in Render dashboard to your Vercel URL
       - key: AI_PROVIDER
         value: groq
       - key: GROQ_API_KEY
-        sync: false           # Set this manually in Render dashboard
+        sync: false           # Set manually in Render dashboard
       - key: GROQ_MODEL
         value: openai/gpt-oss-120b
       - key: APP_STORAGE_DIRECTORY
         value: /tmp/resumeiq-storage
       - key: APP_UPLOAD_MAX_SIZE
         value: 10MB
-      - key: FLYWAY_ENABLED
-        value: "true"
 
 databases:
   - name: resumeiq-db
