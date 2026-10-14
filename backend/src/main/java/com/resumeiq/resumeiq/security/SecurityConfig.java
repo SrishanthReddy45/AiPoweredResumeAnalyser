@@ -49,6 +49,7 @@ public class SecurityConfig {
                             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")))
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login", "/api/v1/auth/logout",
+                            "/actuator/health",
                             "/swagger-ui/**", "/swagger-ui.html", "/api-docs/**", "/error").permitAll()
                     .anyRequest().authenticated())
             .authenticationProvider(authenticationProvider())

@@ -23,8 +23,17 @@ spring:
     async:
       request-timeout: 60000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 jwt:
   secret: ${JWT_SECRET:resumeiq-secret-key-2026-1234567890}
@@ -51,3 +60,27 @@ logging:
   level:
     org.springframework.security: INFO
     com.resumeiq.resumeiq: INFO
+
+---
+# Production profile (Render + PostgreSQL)
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME:}
+    password: ${DATABASE_PASSWORD:}
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
