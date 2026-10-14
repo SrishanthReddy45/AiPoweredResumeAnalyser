@@ -1,0 +1,25 @@
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Java
+backend/target/
+backend/data/
+*.class
+*.mv.db
+*.lock.db
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Private uploaded/generated documents
+backend/storage/*
+!backend/storage/.gitkeep
+storage/*
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

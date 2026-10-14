@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: resumeiq
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/resumeiq;MODE=MySQL;AUTO_SERVER=TRUE}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: ${FLYWAY_ENABLED:false}
+    locations: classpath:db/migration
+  servlet:
+    multipart:
+      max-file-size: ${APP_UPLOAD_MAX_SIZE:10MB}
+      max-request-size: ${APP_UPLOAD_MAX_SIZE:10MB}
+  mvc:
+    async:
+      request-timeout: 60000
+
+server:
+  port: 8080
+
+jwt:
+  secret: ${JWT_SECRET:resumeiq-secret-key-2026-1234567890}
+  expiration-ms: 86400000
+
+app:
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  storage:
+    directory: ${APP_STORAGE_DIRECTORY:./storage}
+  ai:
+    provider: ${AI_PROVIDER:groq}
+    groq:
+      api-key: ${GROQ_API_KEY:}
+      model: ${GROQ_MODEL:llama-3.3-70b-versatile}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.springframework.security: INFO
+    com.resumeiq.resumeiq: INFO
