@@ -31,7 +31,6 @@ public class GeneratedResume {
     @Column(nullable = false)
     private String storageKey;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String content;
 

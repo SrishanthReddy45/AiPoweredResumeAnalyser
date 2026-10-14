@@ -23,11 +23,9 @@ public class Resume {
     @Column(nullable = false)
     private Long fileSize;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String extractedText;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String parsedResumeData;
 

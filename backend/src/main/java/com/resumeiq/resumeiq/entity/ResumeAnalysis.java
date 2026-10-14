@@ -18,7 +18,6 @@ public class ResumeAnalysis {
     @JoinColumn(name = "resume_id", nullable = false)
     private Resume resume;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String jobDescription;
 
@@ -28,35 +27,27 @@ public class ResumeAnalysis {
     @Column(nullable = false)
     private Integer atsScore;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String matchedKeywords;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String missingKeywords;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String matchedSkills;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String missingSkills;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String strengths;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String weaknesses;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String recommendations;
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String sectionFeedback;
 
