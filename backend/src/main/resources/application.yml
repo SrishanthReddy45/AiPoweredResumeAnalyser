@@ -1,10 +1,13 @@
+```yaml
 spring:
   application:
     name: resumeiq
+
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:h2:file:./data/resumeiq;MODE=MySQL;AUTO_SERVER=TRUE}
     username: ${SPRING_DATASOURCE_USERNAME:sa}
     password: ${SPRING_DATASOURCE_PASSWORD:}
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -12,13 +15,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
   flyway:
     enabled: ${FLYWAY_ENABLED:false}
     locations: classpath:db/migration
+
   servlet:
     multipart:
       max-file-size: ${APP_UPLOAD_MAX_SIZE:10MB}
       max-request-size: ${APP_UPLOAD_MAX_SIZE:10MB}
+
   mvc:
     async:
       request-timeout: 60000
@@ -67,13 +73,15 @@ spring:
   config:
     activate:
       on-profile: prod
+
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME:}
-    password: ${DATABASE_PASSWORD:}
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 5
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -81,6 +89,8 @@ spring:
     properties:
       hibernate:
         format_sql: false
+
   flyway:
-    enabled: true
+    enabled: ${FLYWAY_ENABLED:true}
     locations: classpath:db/migration
+```
